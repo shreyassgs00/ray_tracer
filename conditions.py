@@ -30,7 +30,7 @@ def verify_plane_point(plane,point):
     else:
         return True
 
-def verify_first_octet(point):
+def verify_first_octant(point):
     x = point[0]
     y = point[1]
     z = point[2]
@@ -39,7 +39,7 @@ def verify_first_octet(point):
     else:
         return False 
 
-def verify_fifth_octet(point):
+def verify_fifth_octant(point):
     x = point[0]
     y = point[1]
     z = point[2]
