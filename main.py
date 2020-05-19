@@ -41,7 +41,21 @@ def main():
         return disclaimer
     else:
         disclaimer = "Considering the viewport plane is the positive x-y plane which contains 48 pixels at a unit distance from each other, the results are displayed. "
-        return disclaimer
+        pixels = coordinate_fixing.place_pixels()
+        angles = []
+        for i in range (0, len(pixels)):
+            pixel = pixels[i]
+            vector = coordinate_fixing.eye_to_pixel_vectors(eye,pixel)
+            line = coordinate_fixing.make_3d_line(vector,eye)
+            intersection = ray_tracer.find_interesection(line,sphere_center,sphere_radius)
+
+            if intersection!=0:
+                normal = ray_tracer.normal_from_center(sphere_center,intersection)
+                angle = coordinate_fixing.angle_between_vectors(vector,normal)
+                angles.append(angle)
+            else:
+                continue
+        return angles
 
 if __name__ == '__main__':
     try:

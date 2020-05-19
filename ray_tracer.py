@@ -52,8 +52,8 @@ def find_interesection(line,sphere_center,sphere_radius):
     else:
         return 0
 
-
-l = [[10,0],[20,0],[-30,0]]
-c = [10,20,-30]
-r = 10
-print(find_interesection(l,c,r))
+def normal_from_center(center,intersection_point):
+    c = np.array(center)
+    i = np.array(intersection_point)
+    normal = i-c
+    return normal

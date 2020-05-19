@@ -10,7 +10,7 @@ def angle_between_vectors(a1,a2):
     normv2 = np.linalg.norm(v2)
     dot  = np.dot(v1,v2)
     angle = math.acos(dot/(normv1*normv2))
-    return angle
+    return math.degrees(angle)
 
 def place_pixels():
     pixel_plane = []
@@ -19,15 +19,10 @@ def place_pixels():
             pixel_plane.append([i,j,0])
     return pixel_plane
 
-def eye_to_pixel_vectors(eye):
-    pixels = place_pixels()
-    vectors = []
-    for i in range (0,len(pixels)):
-        pixel = pixels[i]
-        p = np.array(pixel)
-        e = np.array(eye)
-        vectors.append(p-e)
-    return vectors
+def eye_to_pixel_vectors(eye,pixel):
+    p = np.array(pixel)
+    e = np.array(eye)
+    return p-e
 
 def make_3d_line(vector,point):
     line = []
