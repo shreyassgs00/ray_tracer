@@ -57,3 +57,12 @@ def normal_from_center(center,intersection_point):
     i = np.array(intersection_point)
     normal = i-c
     return normal
+
+def find_reflected_line(normal,intersection_point,angle):
+    reflected_ray = [0,0,0]
+    for i in range (0,len(normal)):
+        reflected_ray[i] = (normal[i]/math.cos(angle)) 
+    reflected_line = []
+    for j in range(0,len(reflected_ray)):
+        reflected_line.append([reflected_ray[j],intersection_point[j]])
+    return reflected_line

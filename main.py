@@ -2,6 +2,7 @@ import coordinate_fixing
 import ray_tracer
 import conditions
 import sys
+import plot_diagram
 
 def main():
     hasFoundError = False
@@ -42,7 +43,8 @@ def main():
     else:
         disclaimer = "Considering the viewport plane is the positive x-y plane which contains 48 pixels at a unit distance from each other, the results are displayed. "
         pixels = coordinate_fixing.place_pixels()
-        angles = []
+        angles = [] 
+        reflected_lines = []
         for i in range (0, len(pixels)):
             pixel = pixels[i]
             vector = coordinate_fixing.eye_to_pixel_vectors(eye,pixel)
@@ -52,13 +54,19 @@ def main():
             if intersection!=0:
                 normal = ray_tracer.normal_from_center(sphere_center,intersection)
                 angle = coordinate_fixing.angle_between_vectors(vector,normal)
+                angle = 180 - angle
                 angles.append(angle)
+                reflected_line = ray_tracer.find_reflected_line(normal,intersection,angle)
+                reflected_lines.append(reflected_line)
             else:
                 continue
-        return angles
+    plot_diagram.plot_diagram(eye,source,sphere_center,sphere_radius)
+    return reflected_lines
 
 if __name__ == '__main__':
     try:
+        import matplotlib.pyplot as plt
+        from mpl_toolkits import mplot3d
         import numpy as np
         print(main())
     except:
