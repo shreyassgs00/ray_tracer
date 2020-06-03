@@ -12,15 +12,15 @@ def main():
     sphere_radius = 0
 
     if not hasFoundError:
-        eye = list(map(float, input("Enter the co-ordinates of the eyepoint (Must be in first octant): ").split()))
-        if not conditions.verify_first_octant(eye):
-            disclaimer = "Eyepoint is not in the first octant. "
+        eye = list(map(float, input("Enter the co-ordinates of the eyepoint (Must be in  z-positive octant): ").split()))
+        if not conditions.verify_zpos_octant(eye):
+            disclaimer = "Eyepoint is not in the z-positive octant octant. "
             hasFoundError = True
 
     if not hasFoundError:
-        sphere_center = list(map(float, input("Enter the sphere center which is the target (Must be in the fifth octant): ").split()))
-        if not conditions.verify_fifth_octant(sphere_center):
-            disclaimer = "Sphere center not in the fifth octant. "
+        sphere_center = list(map(float, input("Enter the sphere center which is the target (Must be in z-negative octant): ").split()))
+        if not conditions.verify_zneg_octant(sphere_center):
+            disclaimer = "Sphere center not in the z-negative octant. "
             hasFoundError = True
 
     if not hasFoundError:
@@ -30,9 +30,9 @@ def main():
             hasFoundError = True
 
     if not hasFoundError:
-        source = list(map(float, input("Enter the co-ordinates of the light source: (Must be in the fifth octant) ").split()))
-        if not conditions.verify_fifth_octant(source):
-            disclaimer = "Source is not in the fifth octant. "
+        source = list(map(float, input("Enter the co-ordinates of the light source: (Must be in z-negative octant) ").split()))
+        if not conditions.verify_zneg_octant(source):
+            disclaimer = "Source is not in the z-negative octant. "
             hasFoundError = True
         elif not conditions.verify_light_source(sphere_center,sphere_radius,source):
             disclaimer = "Source cannot be inside or on the target object. "
@@ -56,6 +56,7 @@ def main():
                 angle = coordinate_fixing.angle_between_vectors(vector,normal)
                 angle = 180 - angle
                 angles.append(angle)
+                
                 reflected_line = ray_tracer.find_reflected_line(normal,intersection,angle)
                 reflected_lines.append(reflected_line)
             else:

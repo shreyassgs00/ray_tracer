@@ -15,8 +15,11 @@ def angle_between_vectors(a1,a2):
 def place_pixels():
     pixel_plane = []
     for i in range (1,9):
-        for j in range (1,7):
+        for j in range (1,9):
             pixel_plane.append([i,j,0])
+            pixel_plane.append([-i,j,0])
+            pixel_plane.append([i,-j,0])
+            pixel_plane.append([-i,-j,0])
     return pixel_plane
 
 def eye_to_pixel_vectors(eye,pixel):

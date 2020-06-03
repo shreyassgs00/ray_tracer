@@ -30,20 +30,16 @@ def verify_plane_point(plane,point):
     else:
         return True
 
-def verify_first_octant(point):
-    x = point[0]
-    y = point[1]
+def verify_zpos_octant(point):
     z = point[2]
-    if (x>0 and y>0 and z>0):
+    if (z>0):
         return True
     else:
         return False 
 
-def verify_fifth_octant(point):
-    x = point[0]
-    y = point[1]
+def verify_zneg_octant(point):
     z = point[2]
-    if (x>0 and y>0 and z<0):
+    if (z<0):
         return True
     else:
         return False
